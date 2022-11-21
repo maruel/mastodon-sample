@@ -11,8 +11,8 @@
 1. Install docker-compose.
 1. Run this script to help you configure application.env and database.env: `./gen_keys.sh`
 1. Finish application.env configuration:
-  1. Replace <DOMAIN> with your domain name.
-  1. Set your sendgrid.com password.
+    1. Replace <DOMAIN> with your domain name.
+    1. Set your sendgrid.com password.
 1. Setup [Caddy](https://caddyserver.com) with the sample Caddyfile. Wait for
    LetsEncrypt to accept the request.
 1. Once everything is configured, including sendgrid, run: `./setup.sh`
@@ -28,7 +28,8 @@ of disk usage. A [Google Cloud Compute
 Engine](https://cloud.google.com/compute/docs/general-purpose-machines#e2-shared-core)
 e2-micro is probably not enough, a e2-small is maybe fine, a e2-medium is
 definitely enough. Coupled with the free 30GiB disk, monthly cost should over at
-12.23$ (e2-small VM) plus a few bucks/month of bandwidth.
+12.23$USD (e2-small VM) plus a [few bucks/month of egress
+bandwidth](https://cloud.google.com/vpc/network-pricing#internet_egress).
 
 
 ## Notes
