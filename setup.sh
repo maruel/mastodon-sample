@@ -33,7 +33,12 @@ if [ "$LOCAL_DOMAIN" = "<DOMAIN>" ]; then
 fi
 
 
-# Setup the mastodon path.
+echo "- Update Caddyfile"
+set -i "s/DOMAIN/$LOCAL_DOMAIN/g" Caddyfile
+echo "  Don't forget to start Caddy! Look at https://caddyserver.com"
+
+
+echo "- Setup the mastodon path"
 mkdir -p public/system
 sudo chown -R 991:$USER public/system
 

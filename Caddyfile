@@ -1,0 +1,40 @@
+# Copyright 2022 Marc-Antoine Ruel. All rights reserved.
+# Use of this source code is governed under the Apache License, Version 2.0
+# that can be found in the LICENSE file.
+
+
+www.DOMAIN {
+  log {
+    output file /var/log/caddy/www.DOMAIN.log {
+      roll_size     100  # Rotate after 100 MB
+      roll_keep_for 120d # Keep log files for 120 days
+      roll_keep     100  # Keep at most 100 log files
+    }
+  }
+  redir https://DOMAIN{uri} 307
+}
+
+DOMAIN {
+  encode zstd gzip
+  log {
+    output file /var/log/caddy/DOMAIN.log {
+      roll_size     100  # Rotate after 100 MB
+      roll_keep_for 120d # Keep log files for 120 days
+      roll_keep     100  # Keep at most 100 log files
+    }
+  }
+
+  # Always good to have a rickroll.
+  @rickroll {
+    path /.env /wp-admin /wp-login.php /xmlrpc.php
+  }
+  handle @rickroll {
+    redir https://www.youtube.com/watch?v=dQw4w9WgXcQ
+  }
+
+  #respond "Sorry, currently offline" 502
+  # TODO: Serve static files.
+  reverse_proxy /api/v1/streaming* localhost:4000
+  reverse_proxy localhost:3000
+}
+
