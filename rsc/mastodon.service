@@ -1,0 +1,22 @@
+[Unit]
+Description=Mastodon service
+After=docker.service
+
+[Service]
+# Update these settings:
+User=USER
+Group=USER
+WorkingDirectory=/PATH/TO/MASTODON
+
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=-/usr/local/bin/docker-compose kill
+ExecStart=/usr/local/bin/docker-compose up -d
+ExecStop=/usr/local/bin/docker-compose stop
+NotifyAccess=all
+PrivateTmp=true
+PrivateDevices=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

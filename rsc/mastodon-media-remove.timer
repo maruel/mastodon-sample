@@ -1,0 +1,10 @@
+[Unit]
+Description=Mastodon - Schedule a media remove every week
+
+[Timer]
+Persistent=true
+OnCalendar=*-*-* 03:50:00
+Unit=mastodon-media-remove.service
+
+[Install]
+WantedBy=timers.target

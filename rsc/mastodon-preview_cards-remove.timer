@@ -1,0 +1,10 @@
+[Unit]
+Description=Mastodon - Schedule a preview cards remove every week
+
+[Timer]
+Persistent=true
+OnCalendar=*-*-* 03:20:00
+Unit=mastodon-preview_cards-remove.service
+
+[Install]
+WantedBy=timers.target

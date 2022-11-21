@@ -1,0 +1,21 @@
+[Unit]
+Description=Mastodon - media remove service
+Wants=mastodon-media-remove.timer
+
+[Service]
+# Update these settings:
+User=USER
+Group=USER
+WorkingDirectory=/PATH/TO/MASTODON
+
+Type=oneshot
+StandardError=null
+StandardOutput=null
+ExecStart=/usr/local/bin/docker-compose run --rm shell tootctl media remove
+NotifyAccess=all
+PrivateTmp=true
+PrivateDevices=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
